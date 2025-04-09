@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:trebel/core/extensions/size_extensions.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/custom_spotify_nav.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/dashboard_filter_buttons.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/dashboard_header.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/discover_more_section.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/playlist_card.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/recommended_card.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/sticky_filter_header_delegate.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -18,69 +18,148 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   String _selectedFilter = 'All';
   final List<String> filters = ['All', 'Music', 'Podcast'];
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF222831),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header: Greeting + icons
-                const DashboardHeader(),
-                SizedBox(height: 24.h),
-
-                // Filter: All / Music / Podcast
-                DashboardFilterButtons(
-                  filters: filters,
-                  selectedFilter: _selectedFilter,
-                  onFilterSelected: (filter) {
-                    setState(() => _selectedFilter = filter);
-                  },
+      extendBody: true,
+      body: Stack(
+        children: [
+          // ✅ Konten utama dengan SafeArea top only
+          SafeArea(
+            top: true,
+            bottom: false,
+            child: CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 12.h),
+                    child: const DashboardHeader(),
+                  ),
                 ),
-                SizedBox(height: 24.h),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: StickyFilterHeaderDelegate(
+                    child: Container(
+                      color: const Color(0xFF222831),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      alignment: Alignment.centerLeft,
+                      height: 52.h,
+                      child: DashboardFilterButtons(
+                        filters: filters,
+                        selectedFilter: _selectedFilter,
+                        onFilterSelected: (filter) {
+                          setState(() => _selectedFilter = filter);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 24.h)),
 
-                // Horizontal Playlist Cards
-                SizedBox(
-                  height: 72.h,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(right: 16.w),
-                    children: const [
-                      PlaylistCard(
-                        imagePath: 'assets/images/onboarding.jpg',
-                        title: 'Japanese Street\nPop 00\'',
-                      ),
-                      SizedBox(width: 12),
-                      PlaylistCard(
-                        imagePath: 'assets/images/onboarding.jpg',
-                        title: 'Throwback Rock\nMusic 90\'',
-                      ),
-                    ],
+                // ✅ Playlist berdasarkan filter
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: _buildPlaylistSection(),
                   ),
                 ),
 
-                SizedBox(height: 24.h),
+                SliverToBoxAdapter(child: SizedBox(height: 24.h)),
 
-                // Recommended Card
-                const RecommendedCard(
-                  imagePath: 'assets/images/onboarding.jpg',
-                  description: 'Playlist music that accompanies\nyou on the way home',
+                // ✅ RecommendedCard tergantung filter juga (opsional)
+                if (_selectedFilter != 'Podcast')
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: const RecommendedCard(
+                        imagePath: 'assets/images/onboarding.jpg',
+                        description:
+                            'Playlist music that accompanies\nyou on the way home',
+                      ),
+                    ),
+                  ),
+
+                SliverToBoxAdapter(child: SizedBox(height: 24.h)),
+
+                // ✅ Discover Section tetap
+                ...List.generate(
+                  2,
+                  (index) => SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
+                        bottom: index == 1 ? 100.h : 24.h,
+                      ),
+                      child: const DiscoverMoreSection(),
+                    ),
+                  ),
                 ),
-
-                SizedBox(height: 24.h),
-
-                // Discover More Section
-                const DiscoverMoreSection(),
               ],
             ),
           ),
-        ),
+
+          // ✅ Bottom Nav bar
+          CustomSpotifyLikeNav(
+            selectedIndex: _selectedIndex,
+            onItemTapped: (index) {
+              setState(() => _selectedIndex = index);
+            },
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildPlaylistSection() {
+    if (_selectedFilter == 'Music') {
+      return Wrap(
+        spacing: 12.w,
+        runSpacing: 12.h,
+        children: const [
+          PlaylistCard(
+            imagePath: 'assets/images/onboarding.jpg',
+            title: 'Lo-fi Chill Beats',
+          ),
+          PlaylistCard(
+            imagePath: 'assets/images/onboarding.jpg',
+            title: 'Indie Rock Anthems',
+          ),
+        ],
+      );
+    } else if (_selectedFilter == 'Podcast') {
+      return Wrap(
+        spacing: 12.w,
+        runSpacing: 12.h,
+        children: const [
+          PlaylistCard(
+            imagePath: 'assets/images/onboarding.jpg',
+            title: 'Tech Talk Weekly',
+          ),
+          PlaylistCard(
+            imagePath: 'assets/images/onboarding.jpg',
+            title: 'Mindfulness Hour',
+          ),
+        ],
+      );
+    }
+
+    // Default (All)
+    return Wrap(
+      spacing: 12.w,
+      runSpacing: 12.h,
+      children: const [
+        PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Japanese Street\nPop 00\'',
+        ),
+        PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Throwback Rock\nMusic 90\'',
+        ),
+      ],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/discover_musi.dart';
+import 'package:trebel/features/music_page/presentation/pages/open_music.dart'; // pastikan import ini ada
 
 class DiscoverMoreSection extends StatelessWidget {
   const DiscoverMoreSection({super.key});
@@ -47,10 +48,29 @@ class DiscoverMoreSection extends StatelessWidget {
             itemCount: 6,
             separatorBuilder: (_, __) => SizedBox(width: 14.width),
             itemBuilder: (_, index) {
-              return DiscoverMusicCard(
-                imagePath: 'assets/images/onboarding.jpg',
-                title: 'Lofi Chill ${index + 1}',
-                artist: 'Artist ${index + 1}',
+              final imagePath = 'assets/images/onboarding.jpg';
+              final title = 'Lofi Chill ${index + 1}';
+              final artist = 'Artist ${index + 1}';
+
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => OpenMusicPage(
+                        imagePath: imagePath,
+                        songTitle: title,
+                        artistName: artist,
+                        lyrics: 'Lyrics for $title by $artist',
+                      ),
+                    ),
+                  );
+                },
+                child: DiscoverMusicCard(
+                  imagePath: imagePath,
+                  title: title,
+                  artist: artist,
+                ),
               );
             },
           ),

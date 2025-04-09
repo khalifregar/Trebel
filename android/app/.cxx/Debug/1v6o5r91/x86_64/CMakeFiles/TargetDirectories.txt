@@ -1,0 +1,2 @@
+C:/Users/khali/Documents/latihan/trebel/android/app/.cxx/Debug/1v6o5r91/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/khali/Documents/latihan/trebel/android/app/.cxx/Debug/1v6o5r91/x86_64/CMakeFiles/rebuild_cache.dir
