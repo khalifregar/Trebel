@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:trebel/features/splash_screen/presentation/pages/splash_screen.dart';
 
 void main() {
@@ -12,21 +14,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812), // sesuaikan dengan desain kamu
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
           title: 'Trebel',
           debugShowCheckedModeBanner: false,
+
+          // 🌐 Internationalization
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('id'), // Indonesian
+          ],
+          localizationsDelegates: const [
+            AppLocalizations.delegate, // <--- from gen-l10n
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            for (var supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale?.languageCode) {
+                return supportedLocale;
+              }
+            }
+            return supportedLocales.first;
+          },
+
           theme: ThemeData(
-            fontFamily: 'Poppins', // ← ini yang bikin semua pakai Poppins
+            fontFamily: 'Poppins',
             scaffoldBackgroundColor: const Color(0xFF222831),
             textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.white,
-              displayColor: Colors.white,
-            ),
+                  bodyColor: Colors.white,
+                  displayColor: Colors.white,
+                ),
           ),
+
           home: const SplashScreenPage(),
         );
       },

@@ -1,0 +1,39 @@
+{
+  "@@locale": "id",
+  "continueWithGoogle": "Lanjutkan dengan Google",
+  "continueWithApple": "Lanjutkan dengan Apple",
+  "loginWithTrebel": "Masuk dengan akun Trebel",
+  "newToTrebel": "Baru di Trebel? ",
+  "createAccount": "Buat akun",
+  "slide1Title": "Temukan musik favoritmu",
+  "slide1Subtitle": "Cari dan simpan lagu yang kamu sukai dari berbagai genre.",
+  "slide2Title": "Nikmati tanpa iklan",
+  "slide2Subtitle": "Dengarkan musik tanpa gangguan iklan di mana pun.",
+  "slide3Title": "Putar lagu offline",
+  "slide3Subtitle": "Download lagu dan dengarkan kapan saja tanpa internet.",
+
+  "loginTitle": "Masuk",
+  "loginSubtitle": "Baru di sini? Daftar untuk memulai.",
+  "loginButton": "Masuk",
+
+  "emailOrPhone": "Email atau Nomor HP",
+  "password": "Kata Sandi",
+  "enterPasswordHere": "Masukkan kata sandi di sini",
+
+  "forgotPasswordTitle": "Lupa Kata Sandi",
+  "forgotPasswordSubtitle": "Masukkan email kamu untuk menerima tautan pemulihan.",
+  "emailLabel": "Email",
+  "emailHint": "Masukkan alamat email kamu",
+  "passwordLabel": "Kata Sandi",
+  "passwordHint": "Masukkan kata sandi kamu",
+  "sendRecoveryLink": "Kirim Tautan Pemulihan",
+
+  "rememberMe": "Ingat Saya",
+  "forgetPassword": "Lupa Sandi?",
+
+  "registerTitle": "Daftar",
+  "registerButton": "Daftar",
+  "agreePolicyText": "Saya setuju dengan ",
+  "privacyPolicy": "Kebijakan Privasi",
+  "termsOfService": "Ketentuan Layanan"
+}

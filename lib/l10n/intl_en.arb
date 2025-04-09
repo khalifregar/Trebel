@@ -1,0 +1,39 @@
+{
+  "@@locale": "en",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithApple": "Continue with Apple",
+  "loginWithTrebel": "Sign in with Trebel",
+  "newToTrebel": "New to Trebel? ",
+  "createAccount": "Create account",
+  "slide1Title": "Discover your favorite music",
+  "slide1Subtitle": "Search and save songs from various genres.",
+  "slide2Title": "Enjoy without ads",
+  "slide2Subtitle": "Listen to music without interruption anywhere.",
+  "slide3Title": "Play offline songs",
+  "slide3Subtitle": "Download songs and listen anytime without internet.",
+
+  "loginTitle": "Login",
+  "loginSubtitle": "New here? Sign up to get started.",
+  "loginButton": "Login",
+
+  "emailOrPhone": "Email or Phone",
+  "password": "Password",
+  "enterPasswordHere": "Enter password here",
+
+  "forgotPasswordTitle": "Forgot Password",
+  "forgotPasswordSubtitle": "Enter your email to receive recovery instructions.",
+  "emailLabel": "Email",
+  "emailHint": "Enter your email address",
+  "passwordLabel": "Password",
+  "passwordHint": "Enter your password",
+  "sendRecoveryLink": "Send Recovery Link",
+
+  "rememberMe": "Remember Me",
+  "forgetPassword": "Forgot Password?",
+
+  "registerTitle": "Register",
+  "registerButton": "Register",
+  "agreePolicyText": "I agree to the ",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service"
+}
