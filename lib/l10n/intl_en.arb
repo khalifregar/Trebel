@@ -35,5 +35,10 @@
   "registerButton": "Register",
   "agreePolicyText": "I agree to the ",
   "privacyPolicy": "Privacy Policy",
-  "termsOfService": "Terms of Service"
+  "termsOfService": "Terms of Service",
+
+  "searchHint": "Find your favorite music",
+  "mostSearchedTitle": "What's Everyone's Listening To",
+  "videoSectionTitle": "Dive Into Your Favorite Music Videos"
+
 }

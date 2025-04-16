@@ -7,31 +7,40 @@ class DashboardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'Good morning moods✨',
-          style: GoogleFonts.poppins(
-            color: Colors.white,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w600,
+    return Builder(
+      builder: (context) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Good morning moods✨',
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications_none, color: Colors.white),
-            ),
-            SizedBox(width: 8.w),
-            CircleAvatar(
-              radius: 16.r,
-              backgroundImage: const AssetImage('assets/images/onboarding_2.jpeg'),
-            ),
-          ],
-        ),
-      ],
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                },
+                icon: const Icon(Icons.notifications_none, color: Colors.white),
+              ),
+              SizedBox(width: 8.w),
+              GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: CircleAvatar(
+                  radius: 16.r,
+                  backgroundImage:
+                      const AssetImage('assets/images/onboarding_2.jpeg'),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

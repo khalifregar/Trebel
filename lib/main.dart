@@ -21,14 +21,14 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Trebel',
           debugShowCheckedModeBanner: false,
+          
 
-          // 🌐 Internationalization
           supportedLocales: const [
-            Locale('en'), // English
-            Locale('id'), // Indonesian
+            Locale('en'),
+            Locale('id'),
           ],
           localizationsDelegates: const [
-            AppLocalizations.delegate, // <--- from gen-l10n
+            AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
