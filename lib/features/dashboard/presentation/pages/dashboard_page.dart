@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trebel/features/dashboard/presentation/pages/trebel_search_page/trebel_search_page.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/add_trebel_popup.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/custom_spotify_nav.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/dashboard_filter_buttons.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/dashboard_header.dart';
@@ -7,6 +9,7 @@ import 'package:trebel/features/dashboard/presentation/widgets/discover_more_sec
 import 'package:trebel/features/dashboard/presentation/widgets/playlist_card.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/recommended_card.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/sticky_filter_header_delegate.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,13 +24,53 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AddsTrebelPopup.show(context);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: const Color(0xFF1A1A1A),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(color: Colors.deepPurple),
+              child: Text(
+                'Hello, Lif 👋',
+                style: TextStyle(color: Colors.white, fontSize: 20.sp),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person, color: Colors.white),
+              title:
+                  const Text('Profile', style: TextStyle(color: Colors.white)),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings, color: Colors.white),
+              title:
+                  const Text('Settings', style: TextStyle(color: Colors.white)),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title:
+                  const Text('Logout', style: TextStyle(color: Colors.white)),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       backgroundColor: const Color(0xFF222831),
       extendBody: true,
       body: Stack(
         children: [
-          // ✅ Konten utama dengan SafeArea top only
           SafeArea(
             top: true,
             bottom: false,
@@ -37,7 +80,43 @@ class _DashboardPageState extends State<DashboardPage> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 12.h),
-                    child: const DashboardHeader(),
+                    child: Builder(
+                      builder: (context) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Good morning moods✨',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                },
+                                icon: const Icon(Icons.notifications_none,
+                                    color: Colors.white),
+                              ),
+                              SizedBox(width: 12.w),
+                              GestureDetector(
+                                onTap: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                child: CircleAvatar(
+                                  radius: 16.r,
+                                  backgroundImage: const AssetImage(
+                                      'assets/images/onboarding_2.jpeg'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 SliverPersistentHeader(
@@ -59,18 +138,13 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 SliverToBoxAdapter(child: SizedBox(height: 24.h)),
-
-                // ✅ Playlist berdasarkan filter
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: _buildPlaylistSection(),
                   ),
                 ),
-
                 SliverToBoxAdapter(child: SizedBox(height: 24.h)),
-
-                // ✅ RecommendedCard tergantung filter juga (opsional)
                 if (_selectedFilter != 'Podcast')
                   SliverToBoxAdapter(
                     child: Padding(
@@ -82,10 +156,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                   ),
-
                 SliverToBoxAdapter(child: SizedBox(height: 24.h)),
-
-                // ✅ Discover Section tetap
                 ...List.generate(
                   2,
                   (index) => SliverToBoxAdapter(
@@ -100,12 +171,19 @@ class _DashboardPageState extends State<DashboardPage> {
               ],
             ),
           ),
-
-          // ✅ Bottom Nav bar
           CustomSpotifyLikeNav(
             selectedIndex: _selectedIndex,
             onItemTapped: (index) {
               setState(() => _selectedIndex = index);
+
+              if (index == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TrebelSearchPage(),
+                  ),
+                );
+              }
             },
           ),
         ],
@@ -146,7 +224,6 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
 
-    // Default (All)
     return Wrap(
       spacing: 12.w,
       runSpacing: 12.h,

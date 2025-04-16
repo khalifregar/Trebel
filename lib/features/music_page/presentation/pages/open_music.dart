@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trebel/features/music_page/presentation/widgets/lyric_card_widget.dart';
 
 class OpenMusicPage extends StatelessWidget {
   final String imagePath;
@@ -124,8 +125,7 @@ class OpenMusicPage extends StatelessWidget {
                     Icon(Icons.shuffle, color: Colors.white),
                     Icon(Icons.skip_previous_rounded,
                         color: Colors.white, size: 40),
-                    Icon(Icons.play_circle_fill,
-                        color: Colors.white, size: 64),
+                    Icon(Icons.play_circle_fill, color: Colors.white, size: 64),
                     Icon(Icons.skip_next_rounded,
                         color: Colors.white, size: 40),
                     Icon(Icons.repeat, color: Colors.white),
@@ -136,33 +136,9 @@ class OpenMusicPage extends StatelessWidget {
 
                 /// Lyrics Box (lebar & tinggi optimal)
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 24.w,
-                        vertical: 16.h,
-                      ),
-                      constraints: BoxConstraints(
-                        minHeight: 120.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white10,
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Text(
-                          lyrics,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: LyricCardWidget(lyrics: lyrics),
                 ),
+
                 SizedBox(height: 24.h),
               ],
             ),

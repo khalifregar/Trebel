@@ -35,5 +35,10 @@
   "registerButton": "Daftar",
   "agreePolicyText": "Saya setuju dengan ",
   "privacyPolicy": "Kebijakan Privasi",
-  "termsOfService": "Ketentuan Layanan"
+  "termsOfService": "Ketentuan Layanan",
+
+  "searchHint": "Cari Musik favorite mu",
+  "mostSearchedTitle": "Lagi Didengerin Banyak Orang",
+  "videoSectionTitle": "Jelajahi Video Klip Musik Favoritmu"
+
 }
