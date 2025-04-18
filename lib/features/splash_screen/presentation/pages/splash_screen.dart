@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:trebel/core/extensions/size_extensions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trebel/core/common/constant/preference_constants.dart';
+import 'package:trebel/core/common/helpers/preference_helper.dart';
+import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
+import 'package:trebel/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:trebel/features/onboarding/presentation/pages/onboarding_page.dart';
-import 'package:trebel/features/splash_screen/presentation/widgets/splash_logo_widget.dart';
-import 'package:trebel/features/splash_screen/presentation/widgets/splash_text_widget.dart';
+import 'package:trebel/locator.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});
@@ -11,98 +14,62 @@ class SplashScreenPage extends StatefulWidget {
   State<SplashScreenPage> createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage>
-    with TickerProviderStateMixin {
-  late AnimationController _imageController;
-  late AnimationController _textController;
-  late Animation<double> _fadeAnimation;
-  late Animation<double> _scaleAnimation;
-  Animation<Offset>? _slideTextAnimation;
-  Animation<double>? _textFadeAnimation;
+class _SplashScreenPageState extends State<SplashScreenPage> {
+  late final UserAuthBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-
-    _imageController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
-
-    _textController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _imageController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _imageController,
-        curve: Curves.easeOutBack,
-      ),
-    );
-
-    _slideTextAnimation = Tween<Offset>(
-      begin: const Offset(0, -0.5),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _textController,
-        curve: Curves.easeOut,
-      ),
-    );
-
-    _textFadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _textController,
-        curve: Curves.easeIn,
-      ),
-    );
-
-    _imageController.forward().whenComplete(() {
-      _textController.forward().whenComplete(() {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const OnboardingPage(),
-          ),
-        );
-      });
-    });
+    _bloc = locator<UserAuthBloc>();
+    _checkTokenAndFetch();
   }
 
-  @override
-  void dispose() {
-    _imageController.dispose();
-    _textController.dispose();
-    super.dispose();
+  Future<void> _checkTokenAndFetch() async {
+    final token = await getStringValuePreference(key: PreferenceConstants.token);
+    debugPrint('📤 Token dari preferences: $token');
+
+    if (token != null && token.isNotEmpty) {
+      debugPrint('✅ Token ditemukan, memanggil getMe...');
+      _bloc.add(const UserAuthEvent.getMeRequested());
+    } else {
+      debugPrint('❌ Token kosong, pindah ke onboarding...');
+      Future.delayed(const Duration(seconds: 2), () {
+        if (context.mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const OnboardingPage()),
+          );
+        }
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF222831),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SplashLogoWidget(
-              fadeAnimation: _fadeAnimation,
-              scaleAnimation: _scaleAnimation,
-            ),
-            SizedBox(height: 24.height),
-            if (_slideTextAnimation != null && _textFadeAnimation != null)
-              SplashTextWidget(
-                slideAnimation: _slideTextAnimation!,
-                fadeAnimation: _textFadeAnimation!,
-              ),
-          ],
+    return BlocProvider.value(
+      value: _bloc,
+      child: BlocListener<UserAuthBloc, UserAuthState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            success: (_) {
+              debugPrint('✅ getMe sukses → ke Dashboard');
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const DashboardPage()),
+              );
+            },
+            failure: (message) {
+              debugPrint('❌ getMe gagal ($message) → ke Onboarding');
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const OnboardingPage()),
+              );
+            },
+          );
+        },
+        child: const Scaffold(
+          backgroundColor: Color(0xFF222831),
+          body: Center(child: CircularProgressIndicator()),
         ),
       ),
     );
