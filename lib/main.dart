@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:trebel/features/splash_screen/presentation/pages/splash_screen.dart';
 
-void main() {
+import 'package:trebel/features/splash_screen/presentation/pages/splash_screen.dart';
+import 'package:trebel/locator.dart'; // optional if pake auto_route
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDependencies(); // ⬅️ Wajib banget ini dipanggil sebelum runApp
+
   runApp(const MyApp());
 }
 
@@ -21,8 +27,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Trebel',
           debugShowCheckedModeBanner: false,
-          
-
           supportedLocales: const [
             Locale('en'),
             Locale('id'),
@@ -41,7 +45,6 @@ class MyApp extends StatelessWidget {
             }
             return supportedLocales.first;
           },
-
           theme: ThemeData(
             fontFamily: 'Poppins',
             scaffoldBackgroundColor: const Color(0xFF222831),
@@ -50,7 +53,6 @@ class MyApp extends StatelessWidget {
                   displayColor: Colors.white,
                 ),
           ),
-
           home: const SplashScreenPage(),
         );
       },

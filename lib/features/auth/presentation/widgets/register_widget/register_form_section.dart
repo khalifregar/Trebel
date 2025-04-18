@@ -5,7 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
 
 class RegisterFormSection extends StatefulWidget {
-  const RegisterFormSection({super.key});
+  final void Function(String email, String name, String password) onSubmit;
+
+  const RegisterFormSection({
+    super.key,
+    required this.onSubmit,
+  });
 
   @override
   State<RegisterFormSection> createState() => _RegisterFormSectionState();
@@ -117,7 +122,11 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
           child: ElevatedButton(
             onPressed: _agreeToTerms
                 ? () {
-                    // TODO: Implement register logic
+                    final email = _emailController.text.trim();
+                    final name = _usernameController.text.trim();
+                    final password = _passwordController.text.trim();
+
+                    widget.onSubmit(email, name, password);
                   }
                 : null,
             style: ElevatedButton.styleFrom(
