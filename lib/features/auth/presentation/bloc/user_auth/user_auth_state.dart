@@ -6,4 +6,6 @@ class UserAuthState with _$UserAuthState {
   const factory UserAuthState.loading() = UserAuthLoading;
   const factory UserAuthState.success(User user) = UserAuthSuccess;
   const factory UserAuthState.failure(String message) = UserAuthFailure;
+  const factory UserAuthState.loggedOut() = UserAuthLoggedOut;
 }
+

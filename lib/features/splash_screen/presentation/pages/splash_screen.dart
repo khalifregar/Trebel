@@ -26,22 +26,25 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   Future<void> _checkTokenAndFetch() async {
     final token = await getStringValuePreference(key: PreferenceConstants.token);
-    debugPrint('📤 Token dari preferences: $token');
 
     if (token != null && token.isNotEmpty) {
-      debugPrint('✅ Token ditemukan, memanggil getMe...');
+      debugPrint('🟢 Token ditemukan, fetching getMe()...');
       _bloc.add(const UserAuthEvent.getMeRequested());
     } else {
-      debugPrint('❌ Token kosong, pindah ke onboarding...');
-      Future.delayed(const Duration(seconds: 2), () {
-        if (context.mounted) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => const OnboardingPage()),
-          );
-        }
-      });
+      debugPrint('🔴 Token kosong, redirect ke onboarding');
+      _navigateTo(const OnboardingPage());
     }
+  }
+
+  void _navigateTo(Widget page) {
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => page),
+        );
+      }
+    });
   }
 
   @override
@@ -49,21 +52,12 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return BlocProvider.value(
       value: _bloc,
       child: BlocListener<UserAuthBloc, UserAuthState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            success: (_) {
-              debugPrint('✅ getMe sukses → ke Dashboard');
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const DashboardPage()),
-              );
-            },
-            failure: (message) {
-              debugPrint('❌ getMe gagal ($message) → ke Onboarding');
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const OnboardingPage()),
-              );
+        listener: (context, state) async {
+          await state.whenOrNull(
+            success: (_) => _navigateTo(const DashboardPage()),
+            failure: (_) async {
+              await removeValuePreference(key: PreferenceConstants.token);
+              _navigateTo(const OnboardingPage());
             },
           );
         },

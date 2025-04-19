@@ -33,16 +33,12 @@ class RegisterPage extends StatelessWidget {
               listener: (context, state) async {
                 state.whenOrNull(
                   success: (user) async {
- if ((user.accessToken ?? '').isNotEmpty) {
-    await setStringValuePreference(
-      key: PreferenceConstants.token,
-      value: user.accessToken!,
-    );
-  } else {
-    debugPrint('❌ accessToken kosong di response!');
-  }
-
-
+                    if ((user.accessToken ?? '').isNotEmpty) {
+                      await setStringValuePreference(
+                        key: PreferenceConstants.token,
+                        value: user.accessToken!,
+                      );
+                    }
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Register berhasil!')),
                     );

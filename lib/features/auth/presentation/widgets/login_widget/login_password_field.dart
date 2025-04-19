@@ -4,11 +4,13 @@ import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPasswordField extends StatelessWidget {
+  final TextEditingController controller;
   final bool obscureText;
   final VoidCallback onToggle;
 
   const LoginPasswordField({
     super.key,
+    required this.controller,
     required this.obscureText,
     required this.onToggle,
   });
@@ -30,6 +32,7 @@ class LoginPasswordField extends StatelessWidget {
         ),
         SizedBox(height: 8.height),
         TextField(
+          controller: controller,
           obscureText: obscureText,
           cursorColor: const Color(0xFF00BF63),
           style: const TextStyle(color: Colors.white),
@@ -62,3 +65,4 @@ class LoginPasswordField extends StatelessWidget {
     );
   }
 }
+

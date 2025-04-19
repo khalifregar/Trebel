@@ -26,7 +26,6 @@ class UserAuthDto with _$UserAuthDto {
   }
 
   User toDomain() {
-    debugPrint('🧾 Mapping DTO ke domain, token: $accessToken');
     return User(
       accessToken: accessToken,
       email: email,
@@ -41,8 +40,7 @@ class UserAuthDto with _$UserAuthDto {
   static List<User> fromJsonList(List<dynamic> list) {
     return list
         .map(
-          (e) =>
-              UserAuthDto.fromJson(e as Map<String, dynamic>).toDomain(),
+          (e) => UserAuthDto.fromJson(e as Map<String, dynamic>).toDomain(),
         )
         .toList();
   }

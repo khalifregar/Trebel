@@ -16,4 +16,7 @@ abstract class UserApiService {
 
   @GET('/auth/user/me')
   Future<HttpResponse> getMe();
+
+  @POST('/auth/user/logout')
+  Future<HttpResponse> logout();
 }

@@ -21,6 +21,7 @@ mixin _$UserAuthEvent {
     required TResult Function(UserAuthRequest request) loginRequested,
     required TResult Function(UserAuthRequest request) registerRequested,
     required TResult Function() getMeRequested,
+    required TResult Function() logoutRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$UserAuthEvent {
     TResult? Function(UserAuthRequest request)? loginRequested,
     TResult? Function(UserAuthRequest request)? registerRequested,
     TResult? Function()? getMeRequested,
+    TResult? Function()? logoutRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$UserAuthEvent {
     TResult Function(UserAuthRequest request)? loginRequested,
     TResult Function(UserAuthRequest request)? registerRequested,
     TResult Function()? getMeRequested,
+    TResult Function()? logoutRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$UserAuthEvent {
     required TResult Function(UserLoginRequested value) loginRequested,
     required TResult Function(UserRegisterRequested value) registerRequested,
     required TResult Function(UserGetMeRequested value) getMeRequested,
+    required TResult Function(UserLogoutRequested value) logoutRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$UserAuthEvent {
     TResult? Function(UserLoginRequested value)? loginRequested,
     TResult? Function(UserRegisterRequested value)? registerRequested,
     TResult? Function(UserGetMeRequested value)? getMeRequested,
+    TResult? Function(UserLogoutRequested value)? logoutRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$UserAuthEvent {
     TResult Function(UserLoginRequested value)? loginRequested,
     TResult Function(UserRegisterRequested value)? registerRequested,
     TResult Function(UserGetMeRequested value)? getMeRequested,
+    TResult Function(UserLogoutRequested value)? logoutRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,6 +173,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     required TResult Function(UserAuthRequest request) loginRequested,
     required TResult Function(UserAuthRequest request) registerRequested,
     required TResult Function() getMeRequested,
+    required TResult Function() logoutRequested,
   }) {
     return loginRequested(request);
   }
@@ -177,6 +184,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     TResult? Function(UserAuthRequest request)? loginRequested,
     TResult? Function(UserAuthRequest request)? registerRequested,
     TResult? Function()? getMeRequested,
+    TResult? Function()? logoutRequested,
   }) {
     return loginRequested?.call(request);
   }
@@ -187,6 +195,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     TResult Function(UserAuthRequest request)? loginRequested,
     TResult Function(UserAuthRequest request)? registerRequested,
     TResult Function()? getMeRequested,
+    TResult Function()? logoutRequested,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -201,6 +210,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     required TResult Function(UserLoginRequested value) loginRequested,
     required TResult Function(UserRegisterRequested value) registerRequested,
     required TResult Function(UserGetMeRequested value) getMeRequested,
+    required TResult Function(UserLogoutRequested value) logoutRequested,
   }) {
     return loginRequested(this);
   }
@@ -211,6 +221,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     TResult? Function(UserLoginRequested value)? loginRequested,
     TResult? Function(UserRegisterRequested value)? registerRequested,
     TResult? Function(UserGetMeRequested value)? getMeRequested,
+    TResult? Function(UserLogoutRequested value)? logoutRequested,
   }) {
     return loginRequested?.call(this);
   }
@@ -221,6 +232,7 @@ class _$UserLoginRequestedImpl implements UserLoginRequested {
     TResult Function(UserLoginRequested value)? loginRequested,
     TResult Function(UserRegisterRequested value)? registerRequested,
     TResult Function(UserGetMeRequested value)? getMeRequested,
+    TResult Function(UserLogoutRequested value)? logoutRequested,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -328,6 +340,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     required TResult Function(UserAuthRequest request) loginRequested,
     required TResult Function(UserAuthRequest request) registerRequested,
     required TResult Function() getMeRequested,
+    required TResult Function() logoutRequested,
   }) {
     return registerRequested(request);
   }
@@ -338,6 +351,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     TResult? Function(UserAuthRequest request)? loginRequested,
     TResult? Function(UserAuthRequest request)? registerRequested,
     TResult? Function()? getMeRequested,
+    TResult? Function()? logoutRequested,
   }) {
     return registerRequested?.call(request);
   }
@@ -348,6 +362,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     TResult Function(UserAuthRequest request)? loginRequested,
     TResult Function(UserAuthRequest request)? registerRequested,
     TResult Function()? getMeRequested,
+    TResult Function()? logoutRequested,
     required TResult orElse(),
   }) {
     if (registerRequested != null) {
@@ -362,6 +377,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     required TResult Function(UserLoginRequested value) loginRequested,
     required TResult Function(UserRegisterRequested value) registerRequested,
     required TResult Function(UserGetMeRequested value) getMeRequested,
+    required TResult Function(UserLogoutRequested value) logoutRequested,
   }) {
     return registerRequested(this);
   }
@@ -372,6 +388,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     TResult? Function(UserLoginRequested value)? loginRequested,
     TResult? Function(UserRegisterRequested value)? registerRequested,
     TResult? Function(UserGetMeRequested value)? getMeRequested,
+    TResult? Function(UserLogoutRequested value)? logoutRequested,
   }) {
     return registerRequested?.call(this);
   }
@@ -382,6 +399,7 @@ class _$UserRegisterRequestedImpl implements UserRegisterRequested {
     TResult Function(UserLoginRequested value)? loginRequested,
     TResult Function(UserRegisterRequested value)? registerRequested,
     TResult Function(UserGetMeRequested value)? getMeRequested,
+    TResult Function(UserLogoutRequested value)? logoutRequested,
     required TResult orElse(),
   }) {
     if (registerRequested != null) {
@@ -448,6 +466,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     required TResult Function(UserAuthRequest request) loginRequested,
     required TResult Function(UserAuthRequest request) registerRequested,
     required TResult Function() getMeRequested,
+    required TResult Function() logoutRequested,
   }) {
     return getMeRequested();
   }
@@ -458,6 +477,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     TResult? Function(UserAuthRequest request)? loginRequested,
     TResult? Function(UserAuthRequest request)? registerRequested,
     TResult? Function()? getMeRequested,
+    TResult? Function()? logoutRequested,
   }) {
     return getMeRequested?.call();
   }
@@ -468,6 +488,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     TResult Function(UserAuthRequest request)? loginRequested,
     TResult Function(UserAuthRequest request)? registerRequested,
     TResult Function()? getMeRequested,
+    TResult Function()? logoutRequested,
     required TResult orElse(),
   }) {
     if (getMeRequested != null) {
@@ -482,6 +503,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     required TResult Function(UserLoginRequested value) loginRequested,
     required TResult Function(UserRegisterRequested value) registerRequested,
     required TResult Function(UserGetMeRequested value) getMeRequested,
+    required TResult Function(UserLogoutRequested value) logoutRequested,
   }) {
     return getMeRequested(this);
   }
@@ -492,6 +514,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     TResult? Function(UserLoginRequested value)? loginRequested,
     TResult? Function(UserRegisterRequested value)? registerRequested,
     TResult? Function(UserGetMeRequested value)? getMeRequested,
+    TResult? Function(UserLogoutRequested value)? logoutRequested,
   }) {
     return getMeRequested?.call(this);
   }
@@ -502,6 +525,7 @@ class _$UserGetMeRequestedImpl implements UserGetMeRequested {
     TResult Function(UserLoginRequested value)? loginRequested,
     TResult Function(UserRegisterRequested value)? registerRequested,
     TResult Function(UserGetMeRequested value)? getMeRequested,
+    TResult Function(UserLogoutRequested value)? logoutRequested,
     required TResult orElse(),
   }) {
     if (getMeRequested != null) {
@@ -516,6 +540,124 @@ abstract class UserGetMeRequested implements UserAuthEvent {
 }
 
 /// @nodoc
+abstract class _$$UserLogoutRequestedImplCopyWith<$Res> {
+  factory _$$UserLogoutRequestedImplCopyWith(_$UserLogoutRequestedImpl value,
+          $Res Function(_$UserLogoutRequestedImpl) then) =
+      __$$UserLogoutRequestedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserLogoutRequestedImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$UserLogoutRequestedImpl>
+    implements _$$UserLogoutRequestedImplCopyWith<$Res> {
+  __$$UserLogoutRequestedImplCopyWithImpl(_$UserLogoutRequestedImpl _value,
+      $Res Function(_$UserLogoutRequestedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserAuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserLogoutRequestedImpl implements UserLogoutRequested {
+  const _$UserLogoutRequestedImpl();
+
+  @override
+  String toString() {
+    return 'UserAuthEvent.logoutRequested()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserLogoutRequestedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserAuthRequest request) loginRequested,
+    required TResult Function(UserAuthRequest request) registerRequested,
+    required TResult Function() getMeRequested,
+    required TResult Function() logoutRequested,
+  }) {
+    return logoutRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserAuthRequest request)? loginRequested,
+    TResult? Function(UserAuthRequest request)? registerRequested,
+    TResult? Function()? getMeRequested,
+    TResult? Function()? logoutRequested,
+  }) {
+    return logoutRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserAuthRequest request)? loginRequested,
+    TResult Function(UserAuthRequest request)? registerRequested,
+    TResult Function()? getMeRequested,
+    TResult Function()? logoutRequested,
+    required TResult orElse(),
+  }) {
+    if (logoutRequested != null) {
+      return logoutRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoginRequested value) loginRequested,
+    required TResult Function(UserRegisterRequested value) registerRequested,
+    required TResult Function(UserGetMeRequested value) getMeRequested,
+    required TResult Function(UserLogoutRequested value) logoutRequested,
+  }) {
+    return logoutRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserLoginRequested value)? loginRequested,
+    TResult? Function(UserRegisterRequested value)? registerRequested,
+    TResult? Function(UserGetMeRequested value)? getMeRequested,
+    TResult? Function(UserLogoutRequested value)? logoutRequested,
+  }) {
+    return logoutRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoginRequested value)? loginRequested,
+    TResult Function(UserRegisterRequested value)? registerRequested,
+    TResult Function(UserGetMeRequested value)? getMeRequested,
+    TResult Function(UserLogoutRequested value)? logoutRequested,
+    required TResult orElse(),
+  }) {
+    if (logoutRequested != null) {
+      return logoutRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserLogoutRequested implements UserAuthEvent {
+  const factory UserLogoutRequested() = _$UserLogoutRequestedImpl;
+}
+
+/// @nodoc
 mixin _$UserAuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -523,6 +665,7 @@ mixin _$UserAuthState {
     required TResult Function() loading,
     required TResult Function(User user) success,
     required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -531,6 +674,7 @@ mixin _$UserAuthState {
     TResult? Function()? loading,
     TResult? Function(User user)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -539,6 +683,7 @@ mixin _$UserAuthState {
     TResult Function()? loading,
     TResult Function(User user)? success,
     TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -548,6 +693,7 @@ mixin _$UserAuthState {
     required TResult Function(UserAuthLoading value) loading,
     required TResult Function(UserAuthSuccess value) success,
     required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -556,6 +702,7 @@ mixin _$UserAuthState {
     TResult? Function(UserAuthLoading value)? loading,
     TResult? Function(UserAuthSuccess value)? success,
     TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -564,6 +711,7 @@ mixin _$UserAuthState {
     TResult Function(UserAuthLoading value)? loading,
     TResult Function(UserAuthSuccess value)? success,
     TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -635,6 +783,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     required TResult Function() loading,
     required TResult Function(User user) success,
     required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
   }) {
     return initial();
   }
@@ -646,6 +795,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     TResult? Function()? loading,
     TResult? Function(User user)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
   }) {
     return initial?.call();
   }
@@ -657,6 +807,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     TResult Function()? loading,
     TResult Function(User user)? success,
     TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -672,6 +823,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     required TResult Function(UserAuthLoading value) loading,
     required TResult Function(UserAuthSuccess value) success,
     required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
   }) {
     return initial(this);
   }
@@ -683,6 +835,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     TResult? Function(UserAuthLoading value)? loading,
     TResult? Function(UserAuthSuccess value)? success,
     TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
   }) {
     return initial?.call(this);
   }
@@ -694,6 +847,7 @@ class _$UserAuthInitialImpl implements UserAuthInitial {
     TResult Function(UserAuthLoading value)? loading,
     TResult Function(UserAuthSuccess value)? success,
     TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -752,6 +906,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     required TResult Function() loading,
     required TResult Function(User user) success,
     required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
   }) {
     return loading();
   }
@@ -763,6 +918,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     TResult? Function()? loading,
     TResult? Function(User user)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
   }) {
     return loading?.call();
   }
@@ -774,6 +930,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     TResult Function()? loading,
     TResult Function(User user)? success,
     TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -789,6 +946,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     required TResult Function(UserAuthLoading value) loading,
     required TResult Function(UserAuthSuccess value) success,
     required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
   }) {
     return loading(this);
   }
@@ -800,6 +958,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     TResult? Function(UserAuthLoading value)? loading,
     TResult? Function(UserAuthSuccess value)? success,
     TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
   }) {
     return loading?.call(this);
   }
@@ -811,6 +970,7 @@ class _$UserAuthLoadingImpl implements UserAuthLoading {
     TResult Function(UserAuthLoading value)? loading,
     TResult Function(UserAuthSuccess value)? success,
     TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -909,6 +1069,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     required TResult Function() loading,
     required TResult Function(User user) success,
     required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
   }) {
     return success(user);
   }
@@ -920,6 +1081,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     TResult? Function()? loading,
     TResult? Function(User user)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
   }) {
     return success?.call(user);
   }
@@ -931,6 +1093,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     TResult Function()? loading,
     TResult Function(User user)? success,
     TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -946,6 +1109,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     required TResult Function(UserAuthLoading value) loading,
     required TResult Function(UserAuthSuccess value) success,
     required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
   }) {
     return success(this);
   }
@@ -957,6 +1121,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     TResult? Function(UserAuthLoading value)? loading,
     TResult? Function(UserAuthSuccess value)? success,
     TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
   }) {
     return success?.call(this);
   }
@@ -968,6 +1133,7 @@ class _$UserAuthSuccessImpl implements UserAuthSuccess {
     TResult Function(UserAuthLoading value)? loading,
     TResult Function(UserAuthSuccess value)? success,
     TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1062,6 +1228,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     required TResult Function() loading,
     required TResult Function(User user) success,
     required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
   }) {
     return failure(message);
   }
@@ -1073,6 +1240,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     TResult? Function()? loading,
     TResult? Function(User user)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
   }) {
     return failure?.call(message);
   }
@@ -1084,6 +1252,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     TResult Function()? loading,
     TResult Function(User user)? success,
     TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1099,6 +1268,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     required TResult Function(UserAuthLoading value) loading,
     required TResult Function(UserAuthSuccess value) success,
     required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
   }) {
     return failure(this);
   }
@@ -1110,6 +1280,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     TResult? Function(UserAuthLoading value)? loading,
     TResult? Function(UserAuthSuccess value)? success,
     TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
   }) {
     return failure?.call(this);
   }
@@ -1121,6 +1292,7 @@ class _$UserAuthFailureImpl implements UserAuthFailure {
     TResult Function(UserAuthLoading value)? loading,
     TResult Function(UserAuthSuccess value)? success,
     TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1140,4 +1312,127 @@ abstract class UserAuthFailure implements UserAuthState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserAuthFailureImplCopyWith<_$UserAuthFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserAuthLoggedOutImplCopyWith<$Res> {
+  factory _$$UserAuthLoggedOutImplCopyWith(_$UserAuthLoggedOutImpl value,
+          $Res Function(_$UserAuthLoggedOutImpl) then) =
+      __$$UserAuthLoggedOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserAuthLoggedOutImplCopyWithImpl<$Res>
+    extends _$UserAuthStateCopyWithImpl<$Res, _$UserAuthLoggedOutImpl>
+    implements _$$UserAuthLoggedOutImplCopyWith<$Res> {
+  __$$UserAuthLoggedOutImplCopyWithImpl(_$UserAuthLoggedOutImpl _value,
+      $Res Function(_$UserAuthLoggedOutImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserAuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserAuthLoggedOutImpl implements UserAuthLoggedOut {
+  const _$UserAuthLoggedOutImpl();
+
+  @override
+  String toString() {
+    return 'UserAuthState.loggedOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserAuthLoggedOutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) success,
+    required TResult Function(String message) failure,
+    required TResult Function() loggedOut,
+  }) {
+    return loggedOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(User user)? success,
+    TResult? Function(String message)? failure,
+    TResult? Function()? loggedOut,
+  }) {
+    return loggedOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? success,
+    TResult Function(String message)? failure,
+    TResult Function()? loggedOut,
+    required TResult orElse(),
+  }) {
+    if (loggedOut != null) {
+      return loggedOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserAuthInitial value) initial,
+    required TResult Function(UserAuthLoading value) loading,
+    required TResult Function(UserAuthSuccess value) success,
+    required TResult Function(UserAuthFailure value) failure,
+    required TResult Function(UserAuthLoggedOut value) loggedOut,
+  }) {
+    return loggedOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserAuthInitial value)? initial,
+    TResult? Function(UserAuthLoading value)? loading,
+    TResult? Function(UserAuthSuccess value)? success,
+    TResult? Function(UserAuthFailure value)? failure,
+    TResult? Function(UserAuthLoggedOut value)? loggedOut,
+  }) {
+    return loggedOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserAuthInitial value)? initial,
+    TResult Function(UserAuthLoading value)? loading,
+    TResult Function(UserAuthSuccess value)? success,
+    TResult Function(UserAuthFailure value)? failure,
+    TResult Function(UserAuthLoggedOut value)? loggedOut,
+    required TResult orElse(),
+  }) {
+    if (loggedOut != null) {
+      return loggedOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserAuthLoggedOut implements UserAuthState {
+  const factory UserAuthLoggedOut() = _$UserAuthLoggedOutImpl;
 }
