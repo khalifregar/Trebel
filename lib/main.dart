@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:trebel/features/splash_screen/presentation/pages/splash_screen.dart';
-import 'package:trebel/locator.dart'; // optional if pake auto_route
+import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
+import 'package:trebel/locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
 
-  await initializeDependencies(); // ⬅️ Wajib banget ini dipanggil sebelum runApp
-
-  runApp(const MyApp());
+  runApp(
+    BlocProvider<UserAuthBloc>(
+      create: (_) => locator<UserAuthBloc>()..add(const UserAuthEvent.getMeRequested()),
+      child: const MyApp(),
+    ),
+  );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

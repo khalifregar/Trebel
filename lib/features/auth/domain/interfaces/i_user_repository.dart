@@ -7,4 +7,7 @@ abstract class IUserAuthRepository {
   Future<Either<Failure, User>> login(UserAuthRequest request);
   Future<Either<Failure, User>> register(UserAuthRequest request);
   Future<Either<Failure, User>> getMe();
+
+  // ✅ Tambahan untuk logout
+  Future<Either<Failure, Unit>> logout();
 }

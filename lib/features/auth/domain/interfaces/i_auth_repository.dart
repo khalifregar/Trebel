@@ -11,8 +11,10 @@ import 'package:trebel/features/auth/domain/entities/user.dart';
 
 abstract class IAuthRepository {
   // Superadmin
-  Future<Either<Failure, Superadmin>> loginSuperadmin(SuperadminAuthRequest request);
-  Future<Either<Failure, Superadmin>> registerSuperadmin(SuperadminAuthRequest request);
+  Future<Either<Failure, Superadmin>> loginSuperadmin(
+      SuperadminAuthRequest request);
+  Future<Either<Failure, Superadmin>> registerSuperadmin(
+      SuperadminAuthRequest request);
   Future<Either<Failure, Superadmin>> getMeSuperadmin();
 
   // Admin
@@ -24,4 +26,5 @@ abstract class IAuthRepository {
   Future<Either<Failure, User>> loginUser(UserAuthRequest request);
   Future<Either<Failure, User>> registerUser(UserAuthRequest request);
   Future<Either<Failure, User>> getMeUser();
+  Future<Either<Failure, Unit>> logoutUser();
 }

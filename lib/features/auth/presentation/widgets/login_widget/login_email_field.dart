@@ -4,7 +4,9 @@ import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginEmailField extends StatelessWidget {
-  const LoginEmailField({super.key});
+  final TextEditingController controller;
+
+  const LoginEmailField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class LoginEmailField extends StatelessWidget {
         ),
         SizedBox(height: 8.height),
         TextField(
+          controller: controller,
           cursorColor: const Color(0xFF00BF63),
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(

@@ -59,4 +59,9 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<Either<Failure, User>> getMeUser() =>
       user.getMe();
+
+  // ✅ Tambahan logout untuk user
+  @override
+  Future<Either<Failure, Unit>> logoutUser() => user.logout();
 }
+
