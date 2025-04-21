@@ -30,7 +30,7 @@ class CustomSpotifyLikeNav extends StatelessWidget {
           color: Colors.transparent,
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF222831).withOpacity(0.75),
+              color: const Color(0xFF222831).withOpacity(0.45),
               blurRadius: 6,
               offset: const Offset(0, -1),
             ),

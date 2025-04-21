@@ -21,6 +21,7 @@ mixin _$User {
   @JsonKey(name: 'access_token')
   String? get accessToken => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
 
   /// Create a copy of User
@@ -38,6 +39,7 @@ abstract class $UserCopyWith<$Res> {
       {@JsonKey(name: 'user_id') String? id,
       @JsonKey(name: 'access_token') String? accessToken,
       String? email,
+      String? userName,
       String? role});
 }
 
@@ -59,6 +61,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? accessToken = freezed,
     Object? email = freezed,
+    Object? userName = freezed,
     Object? role = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,6 +76,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -93,6 +100,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {@JsonKey(name: 'user_id') String? id,
       @JsonKey(name: 'access_token') String? accessToken,
       String? email,
+      String? userName,
       String? role});
 }
 
@@ -111,6 +119,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? accessToken = freezed,
     Object? email = freezed,
+    Object? userName = freezed,
     Object? role = freezed,
   }) {
     return _then(_$UserImpl(
@@ -125,6 +134,10 @@ class __$$UserImplCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -141,6 +154,7 @@ class _$UserImpl implements _User {
       {@JsonKey(name: 'user_id') this.id,
       @JsonKey(name: 'access_token') this.accessToken,
       this.email,
+      this.userName,
       this.role});
 
   @override
@@ -152,11 +166,13 @@ class _$UserImpl implements _User {
   @override
   final String? email;
   @override
+  final String? userName;
+  @override
   final String? role;
 
   @override
   String toString() {
-    return 'User(id: $id, accessToken: $accessToken, email: $email, role: $role)';
+    return 'User(id: $id, accessToken: $accessToken, email: $email, userName: $userName, role: $role)';
   }
 
   @override
@@ -168,11 +184,14 @@ class _$UserImpl implements _User {
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, accessToken, email, role);
+  int get hashCode =>
+      Object.hash(runtimeType, id, accessToken, email, userName, role);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -188,6 +207,7 @@ abstract class _User implements User {
       {@JsonKey(name: 'user_id') final String? id,
       @JsonKey(name: 'access_token') final String? accessToken,
       final String? email,
+      final String? userName,
       final String? role}) = _$UserImpl;
 
   @override
@@ -198,6 +218,8 @@ abstract class _User implements User {
   String? get accessToken;
   @override
   String? get email;
+  @override
+  String? get userName;
   @override
   String? get role;
 

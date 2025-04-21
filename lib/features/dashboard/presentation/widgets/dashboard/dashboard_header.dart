@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/greeting_header.dart'; // ✅ Import greeting header
 
 class DashboardHeader extends StatelessWidget {
   const DashboardHeader({super.key});
@@ -11,19 +11,11 @@ class DashboardHeader extends StatelessWidget {
       builder: (context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Good morning moods✨',
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          const GreetingHeader(), // ✅ Ganti dengan widget greeting terpisah
           Row(
             children: [
               IconButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 icon: const Icon(Icons.notifications_none, color: Colors.white),
               ),
               SizedBox(width: 8.w),

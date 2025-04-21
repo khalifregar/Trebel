@@ -9,10 +9,8 @@ Future<bool> setStringValuePreference({
   try {
     final prefs = await SharedPreferences.getInstance();
     final result = await prefs.setString(key, value);
-    debugPrint('📥 SET [$key] = $value => Result: $result');
     return result;
   } catch (e) {
-    debugPrint('❌ Failed to save [$key] => $e');
     return false;
   }
 }
@@ -22,10 +20,8 @@ Future<String?> getStringValuePreference({required String key}) async {
   try {
     final prefs = await SharedPreferences.getInstance();
     final val = prefs.getString(key);
-    debugPrint('📤 GET [$key] = $val');
     return val;
   } catch (e) {
-    debugPrint('❌ Failed to get [$key] => $e');
     return null;
   }
 }
@@ -35,10 +31,8 @@ Future<bool> removeValuePreference({required String key}) async {
   try {
     final prefs = await SharedPreferences.getInstance();
     final removed = await prefs.remove(key);
-    debugPrint('🗑 REMOVE [$key] => Result: $removed');
     return removed;
   } catch (e) {
-    debugPrint('❌ Failed to remove [$key] => $e');
     return false;
   }
 }

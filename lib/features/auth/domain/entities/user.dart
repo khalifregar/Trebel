@@ -8,6 +8,7 @@ class User with _$User {
     @JsonKey(name: 'user_id') String? id,
     @JsonKey(name: 'access_token') String? accessToken,
     String? email,
+    String? userName,
     String? role,
   }) = _User;
 }

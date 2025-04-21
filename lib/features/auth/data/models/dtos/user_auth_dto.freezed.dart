@@ -23,6 +23,8 @@ mixin _$UserAuthDto {
   @JsonKey(name: 'access_token')
   String? get accessToken => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'username')
+  String? get userName => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   String? get userId => throw _privateConstructorUsedError;
@@ -46,6 +48,7 @@ abstract class $UserAuthDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'access_token') String? accessToken,
       String? email,
+      @JsonKey(name: 'username') String? userName,
       String? role,
       @JsonKey(name: 'user_id') String? userId});
 }
@@ -67,6 +70,7 @@ class _$UserAuthDtoCopyWithImpl<$Res, $Val extends UserAuthDto>
   $Res call({
     Object? accessToken = freezed,
     Object? email = freezed,
+    Object? userName = freezed,
     Object? role = freezed,
     Object? userId = freezed,
   }) {
@@ -78,6 +82,10 @@ class _$UserAuthDtoCopyWithImpl<$Res, $Val extends UserAuthDto>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -102,6 +110,7 @@ abstract class _$$UserAuthDtoImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'access_token') String? accessToken,
       String? email,
+      @JsonKey(name: 'username') String? userName,
       String? role,
       @JsonKey(name: 'user_id') String? userId});
 }
@@ -121,6 +130,7 @@ class __$$UserAuthDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = freezed,
     Object? email = freezed,
+    Object? userName = freezed,
     Object? role = freezed,
     Object? userId = freezed,
   }) {
@@ -132,6 +142,10 @@ class __$$UserAuthDtoImplCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -151,6 +165,7 @@ class _$UserAuthDtoImpl extends _UserAuthDto {
   const _$UserAuthDtoImpl(
       {@JsonKey(name: 'access_token') this.accessToken,
       this.email,
+      @JsonKey(name: 'username') this.userName,
       this.role,
       @JsonKey(name: 'user_id') this.userId})
       : super._();
@@ -164,6 +179,9 @@ class _$UserAuthDtoImpl extends _UserAuthDto {
   @override
   final String? email;
   @override
+  @JsonKey(name: 'username')
+  final String? userName;
+  @override
   final String? role;
   @override
   @JsonKey(name: 'user_id')
@@ -171,7 +189,7 @@ class _$UserAuthDtoImpl extends _UserAuthDto {
 
   @override
   String toString() {
-    return 'UserAuthDto(accessToken: $accessToken, email: $email, role: $role, userId: $userId)';
+    return 'UserAuthDto(accessToken: $accessToken, email: $email, userName: $userName, role: $role, userId: $userId)';
   }
 
   @override
@@ -182,6 +200,8 @@ class _$UserAuthDtoImpl extends _UserAuthDto {
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.userId, userId) || other.userId == userId));
   }
@@ -189,7 +209,7 @@ class _$UserAuthDtoImpl extends _UserAuthDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, accessToken, email, role, userId);
+      Object.hash(runtimeType, accessToken, email, userName, role, userId);
 
   /// Create a copy of UserAuthDto
   /// with the given fields replaced by the non-null parameter values.
@@ -211,6 +231,7 @@ abstract class _UserAuthDto extends UserAuthDto {
   const factory _UserAuthDto(
       {@JsonKey(name: 'access_token') final String? accessToken,
       final String? email,
+      @JsonKey(name: 'username') final String? userName,
       final String? role,
       @JsonKey(name: 'user_id') final String? userId}) = _$UserAuthDtoImpl;
   const _UserAuthDto._() : super._();
@@ -223,6 +244,9 @@ abstract class _UserAuthDto extends UserAuthDto {
   String? get accessToken;
   @override
   String? get email;
+  @override
+  @JsonKey(name: 'username')
+  String? get userName;
   @override
   String? get role;
   @override

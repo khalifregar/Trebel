@@ -10,6 +10,7 @@ _$UserAuthDtoImpl _$$UserAuthDtoImplFromJson(Map<String, dynamic> json) =>
     _$UserAuthDtoImpl(
       accessToken: json['access_token'] as String?,
       email: json['email'] as String?,
+      userName: json['username'] as String?,
       role: json['role'] as String?,
       userId: json['user_id'] as String?,
     );
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$UserAuthDtoImplToJson(_$UserAuthDtoImpl instance) =>
     <String, dynamic>{
       'access_token': instance.accessToken,
       'email': instance.email,
+      'username': instance.userName,
       'role': instance.role,
       'user_id': instance.userId,
     };

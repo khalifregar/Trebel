@@ -11,15 +11,12 @@
   "slide2Subtitle": "Dengarkan musik tanpa gangguan iklan di mana pun.",
   "slide3Title": "Putar lagu offline",
   "slide3Subtitle": "Download lagu dan dengarkan kapan saja tanpa internet.",
-
   "loginTitle": "Masuk",
   "loginSubtitle": "Baru di sini? Daftar untuk memulai.",
   "loginButton": "Masuk",
-
   "emailOrPhone": "Email atau Nomor HP",
   "password": "Kata Sandi",
   "enterPasswordHere": "Masukkan kata sandi di sini",
-
   "forgotPasswordTitle": "Lupa Kata Sandi",
   "forgotPasswordSubtitle": "Masukkan email kamu untuk menerima tautan pemulihan.",
   "emailLabel": "Email",
@@ -27,18 +24,19 @@
   "passwordLabel": "Kata Sandi",
   "passwordHint": "Masukkan kata sandi kamu",
   "sendRecoveryLink": "Kirim Tautan Pemulihan",
-
   "rememberMe": "Ingat Saya",
   "forgetPassword": "Lupa Sandi?",
-
   "registerTitle": "Daftar",
   "registerButton": "Daftar",
   "agreePolicyText": "Saya setuju dengan ",
   "privacyPolicy": "Kebijakan Privasi",
   "termsOfService": "Ketentuan Layanan",
-
   "searchHint": "Cari Musik favorite mu",
   "mostSearchedTitle": "Lagi Didengerin Banyak Orang",
-  "videoSectionTitle": "Jelajahi Video Klip Musik Favoritmu"
-
+  "videoSectionTitle": "Jelajahi Video Klip Musik Favoritmu",
+  "greetingMorning": "Selamat pagi",
+  "greetingAfternoon": "Selamat siang",
+  "greetingEvening": "Selamat sore",
+  "greetingNight": "Selamat malam",
+  "defaultDisplayName": "teman"
 }
