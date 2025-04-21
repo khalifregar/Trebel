@@ -11,15 +11,12 @@
   "slide2Subtitle": "Listen to music without interruption anywhere.",
   "slide3Title": "Play offline songs",
   "slide3Subtitle": "Download songs and listen anytime without internet.",
-
   "loginTitle": "Login",
   "loginSubtitle": "New here? Sign up to get started.",
   "loginButton": "Login",
-
   "emailOrPhone": "Email or Phone",
   "password": "Password",
   "enterPasswordHere": "Enter password here",
-
   "forgotPasswordTitle": "Forgot Password",
   "forgotPasswordSubtitle": "Enter your email to receive recovery instructions.",
   "emailLabel": "Email",
@@ -27,18 +24,19 @@
   "passwordLabel": "Password",
   "passwordHint": "Enter your password",
   "sendRecoveryLink": "Send Recovery Link",
-
   "rememberMe": "Remember Me",
   "forgetPassword": "Forgot Password?",
-
   "registerTitle": "Register",
   "registerButton": "Register",
   "agreePolicyText": "I agree to the ",
   "privacyPolicy": "Privacy Policy",
   "termsOfService": "Terms of Service",
-
   "searchHint": "Find your favorite music",
   "mostSearchedTitle": "What's Everyone's Listening To",
-  "videoSectionTitle": "Dive Into Your Favorite Music Videos"
-
+  "videoSectionTitle": "Dive Into Your Favorite Music Videos",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "greetingNight": "Good night",
+  "defaultDisplayName": "there"
 }

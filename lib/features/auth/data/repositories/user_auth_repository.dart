@@ -1,8 +1,7 @@
-
-
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -15,28 +14,30 @@ import 'package:trebel/features/auth/domain/interfaces/i_user_repository.dart';
 import 'package:trebel/injection.dart';
 import 'package:dartz/dartz.dart';
 
-
 @LazySingleton(as: IUserAuthRepository)
 class UserAuthRepository implements IUserAuthRepository {
   final UserApiService api = getIt<UserApiService>();
 
-@override
-Future<Either<Failure, User>> login(UserAuthRequest request) async {
-  try {
-    final res = await api.login(request);
-    final body = _parse(res);
+  @override
+  Future<Either<Failure, User>> login(UserAuthRequest request) async {
+    try {
+      final res = await api.login(request);
+      final body = _parse(res);
+      final nestedData = body['data']?['data'];
 
-    final nestedData = body['data']?['data'];
-    if (nestedData == null) {
-      throw GeneralException(message: 'Data tidak ditemukan di response');
+      if (nestedData == null) {
+        throw GeneralException(message: 'Data tidak ditemukan di response');
+      }
+
+      final dto = UserAuthDto.fromJson(nestedData);
+      return Right(dto.toDomain());
+    } on DioException catch (e) {
+      final msg = e.response?.data['message'] ?? 'Terjadi kesalahan';
+      return Left(GeneralFailure(message: msg));
+    } catch (e) {
+      return Left(GeneralFailure(message: 'Terjadi kesalahan pada login'));
     }
-
-    return Right(UserAuthDto.fromJson(nestedData).toDomain());
-  } on GeneralException catch (e) {
-    return Left(GeneralFailure(message: e.message));
   }
-}
-
 
   @override
   Future<Either<Failure, User>> register(UserAuthRequest request) async {
@@ -59,7 +60,14 @@ Future<Either<Failure, User>> login(UserAuthRequest request) async {
     try {
       final res = await api.getMe();
       final body = _parse(res);
-      return Right(UserAuthDto.fromJson(body).toDomain());
+
+      final data = body['data'];
+      if (data == null) {
+        throw GeneralException(
+            message: 'Data tidak ditemukan di response getMe');
+      }
+
+      return Right(UserAuthDto.fromJson(data).toDomain());
     } on GeneralException catch (e) {
       return Left(GeneralFailure(message: e.message));
     }
@@ -81,8 +89,8 @@ Future<Either<Failure, User>> login(UserAuthRequest request) async {
   }
 
   dynamic _parse(HttpResponse response) {
-    if (response.data == null) throw GeneralException(message: 'Invalid Response');
+    if (response.data == null)
+      throw GeneralException(message: 'Invalid Response');
     return response.data is String ? jsonDecode(response.data) : response.data;
   }
 }
-

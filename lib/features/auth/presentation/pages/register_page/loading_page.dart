@@ -13,8 +13,10 @@ class LoadingPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(
-              color: Color(0xFF00BF63),
+            Image.asset(
+              'assets/images/loading.gif',
+              width: 120,
+              height: 120,
             ),
             const SizedBox(height: 16),
             Text(
@@ -23,7 +25,7 @@ class LoadingPage extends StatelessWidget {
                 color: Colors.white70,
                 fontSize: 16,
               ),
-            )
+            ),
           ],
         ),
       ),

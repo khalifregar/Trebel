@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/discover_musi.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/discover_musi.dart';
 import 'package:trebel/features/music_page/presentation/pages/open_music.dart'; // pastikan import ini ada
 
 class DiscoverMoreSection extends StatelessWidget {

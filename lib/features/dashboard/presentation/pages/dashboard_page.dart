@@ -1,17 +1,21 @@
+import 'package:boxy/boxy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:trebel/features/dashboard/presentation/pages/trebel_search_page/trebel_search_page.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/add_trebel_popup.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/custom_spotify_nav.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/dashboard_filter_buttons.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/discover_more_section.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/playlist_card.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/recommended_card.dart';
-import 'package:trebel/features/dashboard/presentation/widgets/sticky_filter_header_delegate.dart';
+
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/add_trebel_popup.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/custom_spotify_nav.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/dashboard_filter_buttons.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/dashboard_header.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/discover_more_section.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/greeting_header.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/playlist_card.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/recommended_card.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/sticky_filter_header_delegate.dart';
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
+import 'package:trebel/features/dashboard/presentation/widgets/dashboard/user_drawer_header.dart';
 import 'package:trebel/features/onboarding/presentation/pages/onboarding_page.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -19,7 +23,6 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Jangan create ulang UserAuthBloc di sini!
     return const _DashboardContent();
   }
 }
@@ -59,51 +62,9 @@ class _DashboardContentState extends State<_DashboardContent> {
       child: Scaffold(
         backgroundColor: const Color(0xFF222831),
         extendBody: true,
-        drawer: Drawer(
-          backgroundColor: const Color(0xFF1A1A1A),
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-DrawerHeader(
-  decoration: const BoxDecoration(color: Colors.deepPurple),
-  child: BlocBuilder<UserAuthBloc, UserAuthState>(
-    buildWhen: (previous, current) => current is UserAuthSuccess || current is UserAuthInitial,
-    builder: (context, state) {
-      if (state is UserAuthSuccess) {
-        final email = state.user.email ?? 'User';
-        return Text(
-          'Hello, $email 👋',
-          style: TextStyle(color: Colors.white, fontSize: 20.sp),
-        );
-      } else {
-        return const Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        );
-      }
-    },
-  ),
-),
-
-
-              ListTile(
-                leading: const Icon(Icons.person, color: Colors.white),
-                title: const Text('Profile', style: TextStyle(color: Colors.white)),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings, color: Colors.white),
-                title: const Text('Settings', style: TextStyle(color: Colors.white)),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout, color: Colors.white),
-                title: const Text('Logout', style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  context.read<UserAuthBloc>().add(const UserAuthEvent.logoutRequested());
-                },
-              ),
-            ],
-          ),
+        drawer: const Drawer(
+          backgroundColor: Color(0xFF1A1A1A),
+          child: UserDrawerSection(),
         ),
         body: Stack(
           children: [
@@ -116,39 +77,7 @@ DrawerHeader(
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 12.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Good morning moods✨',
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.notifications_none, color: Colors.white),
-                              ),
-                              SizedBox(width: 12.w),
-                              Builder(
-                                builder: (drawerContext) => GestureDetector(
-                                  onTap: () {
-                                    Scaffold.of(drawerContext).openDrawer();
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 16.r,
-                                    backgroundImage: const AssetImage('assets/images/onboarding_2.jpeg'),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      child: const DashboardHeader(), // ← BOXIFIED
                     ),
                   ),
                   SliverPersistentHeader(
@@ -183,7 +112,8 @@ DrawerHeader(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: const RecommendedCard(
                           imagePath: 'assets/images/onboarding.jpg',
-                          description: 'Playlist music that accompanies\nyou on the way home',
+                          description:
+                              'Playlist music that accompanies\nyou on the way home',
                         ),
                       ),
                     ),
@@ -192,7 +122,8 @@ DrawerHeader(
                     2,
                     (index) => SliverToBoxAdapter(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16.w).copyWith(
                           bottom: index == 1 ? 100.h : 24.h,
                         ),
                         child: const DiscoverMoreSection(),
@@ -209,7 +140,8 @@ DrawerHeader(
                 if (index == 1) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TrebelSearchPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const TrebelSearchPage()),
                   );
                 }
               },
@@ -221,51 +153,43 @@ DrawerHeader(
   }
 
   Widget _buildPlaylistSection() {
-    if (_selectedFilter == 'Music') {
-      return Wrap(
-        spacing: 12.w,
-        runSpacing: 12.h,
-        children: const [
-          PlaylistCard(
-            imagePath: 'assets/images/onboarding.jpg',
-            title: 'Lo-fi Chill Beats',
-          ),
-          PlaylistCard(
-            imagePath: 'assets/images/onboarding.jpg',
-            title: 'Indie Rock Anthems',
-          ),
-        ],
-      );
-    } else if (_selectedFilter == 'Podcast') {
-      return Wrap(
-        spacing: 12.w,
-        runSpacing: 12.h,
-        children: const [
-          PlaylistCard(
-            imagePath: 'assets/images/onboarding.jpg',
-            title: 'Tech Talk Weekly',
-          ),
-          PlaylistCard(
-            imagePath: 'assets/images/onboarding.jpg',
-            title: 'Mindfulness Hour',
-          ),
-        ],
-      );
-    }
-
-    return Wrap(
-      spacing: 12.w,
-      runSpacing: 12.h,
-      children: const [
-        PlaylistCard(
+    final playlists = {
+      'Music': [
+        const PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Lo-fi Chill Beats',
+        ),
+        const PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Indie Rock Anthems',
+        ),
+      ],
+      'Podcast': [
+        const PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Tech Talk Weekly',
+        ),
+        const PlaylistCard(
+          imagePath: 'assets/images/onboarding.jpg',
+          title: 'Mindfulness Hour',
+        ),
+      ],
+      'All': [
+        const PlaylistCard(
           imagePath: 'assets/images/onboarding.jpg',
           title: 'Japanese Street\nPop 00\'',
         ),
-        PlaylistCard(
+        const PlaylistCard(
           imagePath: 'assets/images/onboarding.jpg',
           title: 'Throwback Rock\nMusic 90\'',
         ),
       ],
+    };
+
+    return Wrap(
+      spacing: 12.w,
+      runSpacing: 12.h,
+      children: playlists[_selectedFilter]!,
     );
   }
 }

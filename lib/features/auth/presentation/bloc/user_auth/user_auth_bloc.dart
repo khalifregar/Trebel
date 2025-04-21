@@ -21,43 +21,38 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
 
   UserAuthBloc(this._repo) : super(const UserAuthState.initial()) {
     // 🔐 LOGIN
-on<UserLoginRequested>((event, emit) async {
-  emit(const UserAuthState.loading());
-  final result = await _repo.login(event.request);
-
-  await result.fold(
-    (failure) async {
-      emit(UserAuthState.failure(failure.message ?? 'Login gagal'));
-    },
-    (user) async {
-      final token = user.accessToken;
-      if (token != null && token.isNotEmpty) {
-        final saved = await setStringValuePreference(
-          key: PreferenceConstants.token,
-          value: token,
-        );
-
-        if (!saved) {
-          emit(const UserAuthState.failure('Gagal menyimpan token'));
-          return;
-        }
-
-        debugPrint('✅ Token berhasil disimpan: $token');
-      } else {
-        emit(const UserAuthState.failure('Token kosong saat login'));
-        return;
-      }
-
-      emit(UserAuthState.success(user));
-    },
-  );
-});
-
+    on<UserLoginRequested>((event, emit) async {
+      emit(const UserAuthState.loading());
+      final result = await _repo.login(event.request);
+      await result.fold(
+        (failure) async {
+          emit(UserAuthState.failure(failure.message ?? 'Login gagal'));
+        },
+        (user) async {
+          final token = user.accessToken;
+          if (token != null && token.isNotEmpty) {
+            final saved = await setStringValuePreference(
+              key: PreferenceConstants.token,
+              value: token,
+            );
+            if (!saved) {
+              emit(const UserAuthState.failure('Gagal menyimpan token'));
+              return;
+            }
+          } else {
+            emit(const UserAuthState.failure('Token kosong saat login'));
+            return;
+          }
+          emit(UserAuthState.success(user));
+        },
+      );
+    });
 
     // 📝 REGISTER
     on<UserRegisterRequested>((event, emit) async {
       emit(const UserAuthState.loading());
       final result = await _repo.register(event.request);
+
       await result.fold(
         (failure) async {
           emit(UserAuthState.failure(failure.message ?? 'Register gagal'));
@@ -69,13 +64,11 @@ on<UserLoginRequested>((event, emit) async {
               key: PreferenceConstants.token,
               value: token,
             );
-
             if (!saved) {
               emit(const UserAuthState.failure('Gagal menyimpan token'));
               return;
             }
           }
-
           emit(UserAuthState.success(user));
         },
       );
@@ -88,7 +81,16 @@ on<UserLoginRequested>((event, emit) async {
       result.fold(
         (failure) =>
             emit(UserAuthState.failure(failure.message ?? 'Gagal ambil data')),
-        (user) => emit(UserAuthState.success(user)),
+        (user) {
+          final token = user.accessToken;
+          if (token != null && token.isNotEmpty) {
+            setStringValuePreference(
+              key: PreferenceConstants.token,
+              value: token,
+            );
+          }
+          emit(UserAuthState.success(user));
+        },
       );
     });
 

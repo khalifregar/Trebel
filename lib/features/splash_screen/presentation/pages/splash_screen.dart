@@ -5,6 +5,8 @@ import 'package:trebel/core/common/helpers/preference_helper.dart';
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
 import 'package:trebel/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:trebel/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:trebel/features/splash_screen/presentation/widgets/splash_logo_widget.dart';
+import 'package:trebel/features/splash_screen/presentation/widgets/splash_text_widget.dart';
 import 'package:trebel/locator.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -14,13 +16,41 @@ class SplashScreenPage extends StatefulWidget {
   State<SplashScreenPage> createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
+class _SplashScreenPageState extends State<SplashScreenPage>
+    with SingleTickerProviderStateMixin {
   late final UserAuthBloc _bloc;
+  late final AnimationController _controller;
+  late final Animation<double> _fadeAnimation;
+  late final Animation<double> _scaleAnimation;
+  late final Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
     super.initState();
     _bloc = locator<UserAuthBloc>();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOutBack),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+
+    _controller.forward();
+
     _checkTokenAndFetch();
   }
 
@@ -48,6 +78,12 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _bloc,
@@ -61,9 +97,26 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             },
           );
         },
-        child: const Scaffold(
-          backgroundColor: Color(0xFF222831),
-          body: Center(child: CircularProgressIndicator()),
+        child: Scaffold(
+          backgroundColor: const Color(0xFF222831),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SplashLogoWidget(
+                  fadeAnimation: _fadeAnimation,
+                  scaleAnimation: _scaleAnimation,
+                ),
+                const SizedBox(height: 16),
+                SplashTextWidget(
+                  slideAnimation: _slideAnimation,
+                  fadeAnimation: _fadeAnimation,
+                ),
+                const SizedBox(height: 32),
+                const CircularProgressIndicator(color: Colors.white),
+              ],
+            ),
+          ),
         ),
       ),
     );
