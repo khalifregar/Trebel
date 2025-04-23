@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // ✅ Tambahkan ini
 import 'package:trebel/features/dashboard/presentation/widgets/trebel_search_page/most_searched_title.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/trebel_search_page/podcast_card_grid.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/trebel_search_page/video_list_view.dart';
 import 'package:trebel/features/dashboard/presentation/widgets/trebel_search_page/video_section_title.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 
 class TrebelSearchPage extends StatefulWidget {
   const TrebelSearchPage({super.key});

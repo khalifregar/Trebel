@@ -58,10 +58,8 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     final token = await getStringValuePreference(key: PreferenceConstants.token);
 
     if (token != null && token.isNotEmpty) {
-      debugPrint('🟢 Token ditemukan, fetching getMe()...');
       _bloc.add(const UserAuthEvent.getMeRequested());
     } else {
-      debugPrint('🔴 Token kosong, redirect ke onboarding');
       _navigateTo(const OnboardingPage());
     }
   }

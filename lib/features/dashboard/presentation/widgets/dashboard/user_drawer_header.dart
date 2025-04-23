@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
+import 'package:trebel/features/profile/profile.dart';
 
 class UserDrawerSection extends StatelessWidget {
   const UserDrawerSection({super.key});
@@ -46,7 +48,12 @@ class UserDrawerSection extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.person, color: Colors.white),
           title: const Text('Profile', style: TextStyle(color: Colors.white)),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+            );
+          },
         ),
         ListTile(
           leading: const Icon(Icons.settings, color: Colors.white),

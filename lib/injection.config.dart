@@ -33,6 +33,12 @@ import 'package:trebel/features/auth/presentation/bloc/superadmin_auth/superadmi
     as _i446;
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart'
     as _i23;
+import 'package:trebel/features/playlist_pick/data/repositories/playlist_pick_repository.dart'
+    as _i10;
+import 'package:trebel/features/playlist_pick/domain/interfaces/i_playlist_pick_repository.dart'
+    as _i717;
+import 'package:trebel/features/playlist_pick/presentation/bloc/playlist_pick_bloc/playlist_pick_bloc.dart'
+    as _i915;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -53,6 +59,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i608.AdminAuthRepository());
     gh.factory<_i367.AdminAuthBloc>(
         () => _i367.AdminAuthBloc(gh<_i847.IAdminAuthRepository>()));
+    gh.lazySingleton<_i717.IPlaylistPickRepository>(
+        () => _i10.PlaylistPickRepository());
+    gh.factory<_i915.PlaylistPickBloc>(
+        () => _i915.PlaylistPickBloc(gh<_i717.IPlaylistPickRepository>()));
     gh.factory<_i23.UserAuthBloc>(
         () => _i23.UserAuthBloc(gh<_i146.IUserAuthRepository>()));
     gh.lazySingleton<_i210.IAuthRepository>(() => _i342.AuthRepository(

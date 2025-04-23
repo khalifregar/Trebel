@@ -38,5 +38,7 @@
   "greetingAfternoon": "Selamat siang",
   "greetingEvening": "Selamat sore",
   "greetingNight": "Selamat malam",
-  "defaultDisplayName": "teman"
+  "defaultDisplayName": "teman",
+  "favoriteMusic": "Pilih Lagu Favoritmu",
+  "nextPick": "Lanjut"
 }

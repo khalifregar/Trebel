@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:trebel/features/auth/presentation/pages/forgoten_password/forgot_password_page.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 
 class LoginRememberForgotSection extends StatefulWidget {
   const LoginRememberForgotSection({super.key});

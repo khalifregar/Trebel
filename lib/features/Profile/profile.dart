@@ -6,13 +6,13 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("Profile"),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         elevation: 0,
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
+              backgroundImage: AssetImage('assets/images/onboarding_2.jpeg'),
             ),
             const SizedBox(height: 12),
             const Text(
@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 4),
             const Text(
               'Music lover and songwriter',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 14, color: Colors.white),
             ),
             const SizedBox(height: 20),
             Row(
@@ -83,7 +83,7 @@ class _StatItem extends StatelessWidget {
         Text(count,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        Text(label, style: const TextStyle(color: Colors.grey)),
+        Text(label, style: const TextStyle(color: Colors.white)),
       ],
     );
   }
@@ -106,10 +106,10 @@ class _SectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 4),
-      leading: Icon(icon, color: Colors.black),
+      leading: Icon(icon, color: Colors.white),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       subtitle: subtitle != null
-          ? Text(subtitle!, style: const TextStyle(color: Colors.grey))
+          ? Text(subtitle!, style: const TextStyle(color: Colors.white))
           : null,
       trailing: hasArrow ? const Icon(Icons.chevron_right) : null,
       onTap: () {},

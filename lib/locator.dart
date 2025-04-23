@@ -16,6 +16,10 @@ import 'package:trebel/features/auth/data/repositories/superadmin_auth_repositor
 import 'package:trebel/features/auth/domain/interfaces/i_user_repository.dart';
 import 'package:trebel/features/auth/presentation/bloc/superadmin_auth/superadmin_auth_bloc.dart';
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
+import 'package:trebel/features/playlist_pick/data/datasources/remotes/playlist_pick_api_service.dart';
+import 'package:trebel/features/playlist_pick/data/repositories/playlist_pick_repository.dart';
+import 'package:trebel/features/playlist_pick/domain/interfaces/i_playlist_pick_repository.dart';
+import 'package:trebel/features/playlist_pick/presentation/bloc/playlist_pick_bloc/playlist_pick_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -52,6 +56,22 @@ locator.registerLazySingleton<IUserAuthRepository>(
 // User Bloc
 locator.registerFactory<UserAuthBloc>(
   () => UserAuthBloc(locator.get<IUserAuthRepository>()),
+);
+
+// Repository
+locator.registerLazySingleton<IPlaylistPickRepository>(
+  () => PlaylistPickRepository(),
+);
+
+
+// API service
+locator.registerLazySingleton<PlaylistPickApiService>(
+  () => PlaylistPickApiService(locator.get<Dio>(instanceName: 'AuthorizedClient')),
+);
+
+// Bloc
+locator.registerFactory<PlaylistPickBloc>(
+  () => PlaylistPickBloc(locator.get<IPlaylistPickRepository>()),
 );
 
 

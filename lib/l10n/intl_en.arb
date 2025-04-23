@@ -38,5 +38,7 @@
   "greetingAfternoon": "Good afternoon",
   "greetingEvening": "Good evening",
   "greetingNight": "Good night",
-  "defaultDisplayName": "there"
+  "defaultDisplayName": "there",
+  "favoriteMusic": "Select Your Favorite Songs",
+  "nextPick": "Next"
 }
