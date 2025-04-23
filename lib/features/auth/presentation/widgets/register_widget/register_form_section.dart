@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 
 class RegisterFormSection extends StatefulWidget {
   final void Function(String email, String name, String password) onSubmit;

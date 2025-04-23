@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:trebel/features/auth/presentation/pages/login_page/login_page.dart';
 import 'package:trebel/features/auth/presentation/pages/register_page/register_page.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 
 class OnboardingButtons extends StatelessWidget {
   const OnboardingButtons({super.key});

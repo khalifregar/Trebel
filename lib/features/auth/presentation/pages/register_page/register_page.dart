@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,10 +10,13 @@ import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:trebel/features/auth/data/models/requests/user_auth_request.dart';
 import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
 import 'package:trebel/features/auth/presentation/widgets/register_widget/register_form_section.dart';
+import 'package:trebel/features/playlist_pick/presentation/pages/select_pick_card.dart';
 
-import 'package:trebel/features/dashboard/presentation/pages/dashboard_page.dart'; // ⬅️ Tambahkan ini
 import 'package:trebel/injection.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 import 'package:trebel/locator.dart';
+
+
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -48,7 +50,7 @@ class RegisterPage extends StatelessWidget {
                     if (context.mounted) {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => const DashboardPage(),
+                          builder: (_) => const SelectPickCard(), // 👈 Ganti ke SelectPickCard
                         ),
                       );
                     }

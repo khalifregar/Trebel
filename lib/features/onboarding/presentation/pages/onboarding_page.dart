@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:trebel/core/extensions/size_extensions.dart';
 import 'package:trebel/features/onboarding/presentation/widgets/onboarding_buttons.dart';
 import 'package:trebel/features/onboarding/presentation/widgets/onboarding_progress_bar.dart';
 import 'package:trebel/features/onboarding/presentation/widgets/onboarding_text_content.dart';
+import 'package:trebel/l10n/app_localizations.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
