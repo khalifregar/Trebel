@@ -1,9 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
 import 'package:trebel/l10n/app_localizations.dart';
 
 class GreetingHeader extends StatelessWidget {
@@ -40,40 +38,28 @@ class GreetingHeader extends StatelessWidget {
     final greeting = _getGreeting(context);
     final emoji = _getTimeBasedEmoji();
 
-    return BlocBuilder<UserAuthBloc, UserAuthState>(
-      builder: (context, state) {
-        String nameDisplay;
+    final nameDisplay = locale.defaultDisplayName; // Default name (hardcode atau ganti nanti manual)
 
-        if (state is UserAuthSuccess) {
-          nameDisplay = state.user.userName ??
-              state.user.email ??
-              locale.defaultDisplayName;
-        } else {
-          nameDisplay = 'Loading...';
-        }
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              greeting,
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              '$nameDisplay $emoji',
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        );
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          greeting,
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Text(
+          '$nameDisplay $emoji',
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
     );
   }
 }

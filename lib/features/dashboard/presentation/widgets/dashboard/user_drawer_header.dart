@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart';
 import 'package:trebel/features/profile/profile.dart';
 
 class UserDrawerSection extends StatelessWidget {
@@ -16,33 +13,9 @@ class UserDrawerSection extends StatelessWidget {
       children: [
         DrawerHeader(
           decoration: const BoxDecoration(color: Colors.deepPurple),
-          child: BlocBuilder<UserAuthBloc, UserAuthState>(
-            buildWhen: (previous, current) =>
-                current is UserAuthSuccess ||
-                current is UserAuthInitial ||
-                current is UserAuthLoading,
-            builder: (context, state) {
-              if (state is UserAuthSuccess) {
-                final email = state.user.email ?? 'User';
-                return Text(
-                  'Hello, $email 👋',
-                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
-                );
-              } else {
-                return Shimmer.fromColors(
-                  baseColor: Colors.grey.shade600,
-                  highlightColor: Colors.grey.shade300,
-                  child: Container(
-                    width: 180.w,
-                    height: 20.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                );
-              }
-            },
+          child: Text(
+            'Hello, User 👋', // Static dulu, nanti bisa inject name/email
+            style: TextStyle(color: Colors.white, fontSize: 20.sp),
           ),
         ),
         ListTile(
@@ -58,15 +31,19 @@ class UserDrawerSection extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.settings, color: Colors.white),
           title: const Text('Settings', style: TextStyle(color: Colors.white)),
-          onTap: () {},
+          onTap: () {
+            // TODO: Tambahkan navigasi settings kalau sudah ada
+          },
         ),
         ListTile(
           leading: const Icon(Icons.logout, color: Colors.white),
           title: const Text('Logout', style: TextStyle(color: Colors.white)),
           onTap: () {
-            context
-                .read<UserAuthBloc>()
-                .add(const UserAuthEvent.logoutRequested());
+            // TODO: Implementasi logout manual di sini
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Logout berhasil! (dummy)')),
+            );
+            context.go('/login'); // Atau pakai pushReplacement tergantung router kamu
           },
         ),
       ],
