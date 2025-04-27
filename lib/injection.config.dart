@@ -11,28 +11,26 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:trebel/features/auth/data/repositories/admin_auth_repository.dart'
-    as _i608;
-import 'package:trebel/features/auth/data/repositories/auth_repository.dart'
-    as _i342;
-import 'package:trebel/features/auth/data/repositories/superadmin_auth_repository.dart'
-    as _i966;
-import 'package:trebel/features/auth/data/repositories/user_auth_repository.dart'
-    as _i70;
-import 'package:trebel/features/auth/domain/interfaces/i_admin_repository.dart'
-    as _i847;
-import 'package:trebel/features/auth/domain/interfaces/i_auth_repository.dart'
-    as _i210;
-import 'package:trebel/features/auth/domain/interfaces/i_superadmin_repository.dart'
-    as _i304;
-import 'package:trebel/features/auth/domain/interfaces/i_user_repository.dart'
-    as _i146;
-import 'package:trebel/features/auth/presentation/bloc/admin_auth/admin_auth_bloc.dart'
-    as _i367;
-import 'package:trebel/features/auth/presentation/bloc/superadmin_auth/superadmin_auth_bloc.dart'
-    as _i446;
-import 'package:trebel/features/auth/presentation/bloc/user_auth/user_auth_bloc.dart'
-    as _i23;
+import 'package:trebel/features/auth/otp/data/repositories/otp_repository.dart'
+    as _i948;
+import 'package:trebel/features/auth/otp/domain/interfaces/i_otp_repository.dart'
+    as _i9;
+import 'package:trebel/features/auth/otp/presentation/cubit/otp_cubit.dart'
+    as _i943;
+import 'package:trebel/features/auth/user/data/repositories/user_repository.dart'
+    as _i351;
+import 'package:trebel/features/auth/user/domain/interfaces/i_user_repository.dart'
+    as _i841;
+import 'package:trebel/features/auth/user/presentation/cubit/delete_user_cubit/delete_user_cubit.dart'
+    as _i386;
+import 'package:trebel/features/auth/user/presentation/cubit/logout_user_cubit/logout_user_cubit.dart'
+    as _i461;
+import 'package:trebel/features/auth/user/presentation/cubit/store_user_cubit/store_user_cubit.dart'
+    as _i844;
+import 'package:trebel/features/auth/user/presentation/cubit/update_user_cubit/update_user_cubit.dart'
+    as _i879;
+import 'package:trebel/features/auth/user/presentation/cubit/user_cubit/user_cubit.dart'
+    as _i206;
 import 'package:trebel/features/playlist_pick/data/repositories/playlist_pick_repository.dart'
     as _i10;
 import 'package:trebel/features/playlist_pick/domain/interfaces/i_playlist_pick_repository.dart'
@@ -51,27 +49,23 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i304.ISuperadminAuthRepository>(
-        () => _i966.SuperAdminAuthRepository());
-    gh.lazySingleton<_i146.IUserAuthRepository>(
-        () => _i70.UserAuthRepository());
-    gh.lazySingleton<_i847.IAdminAuthRepository>(
-        () => _i608.AdminAuthRepository());
-    gh.factory<_i367.AdminAuthBloc>(
-        () => _i367.AdminAuthBloc(gh<_i847.IAdminAuthRepository>()));
+    gh.lazySingleton<_i9.IOtpRepository>(() => _i948.OtpRepository());
+    gh.lazySingleton<_i841.IUserRepository>(() => _i351.UserRepository());
     gh.lazySingleton<_i717.IPlaylistPickRepository>(
         () => _i10.PlaylistPickRepository());
+    gh.factory<_i386.DeleteUserCubit>(
+        () => _i386.DeleteUserCubit(gh<_i841.IUserRepository>()));
+    gh.factory<_i461.LogoutUserCubit>(
+        () => _i461.LogoutUserCubit(gh<_i841.IUserRepository>()));
+    gh.factory<_i844.StoreUserCubit>(
+        () => _i844.StoreUserCubit(gh<_i841.IUserRepository>()));
+    gh.factory<_i879.UpdateUserCubit>(
+        () => _i879.UpdateUserCubit(gh<_i841.IUserRepository>()));
+    gh.factory<_i206.UserCubit>(
+        () => _i206.UserCubit(gh<_i841.IUserRepository>()));
     gh.factory<_i915.PlaylistPickBloc>(
         () => _i915.PlaylistPickBloc(gh<_i717.IPlaylistPickRepository>()));
-    gh.factory<_i23.UserAuthBloc>(
-        () => _i23.UserAuthBloc(gh<_i146.IUserAuthRepository>()));
-    gh.lazySingleton<_i210.IAuthRepository>(() => _i342.AuthRepository(
-          superadmin: gh<_i304.ISuperadminAuthRepository>(),
-          admin: gh<_i847.IAdminAuthRepository>(),
-          user: gh<_i146.IUserAuthRepository>(),
-        ));
-    gh.factory<_i446.SuperadminAuthBloc>(
-        () => _i446.SuperadminAuthBloc(gh<_i304.ISuperadminAuthRepository>()));
+    gh.factory<_i943.OtpCubit>(() => _i943.OtpCubit(gh<_i9.IOtpRepository>()));
     return this;
   }
 }
