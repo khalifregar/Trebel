@@ -17,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const CircleAvatar(
               radius: 50,
@@ -25,14 +26,21 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 12),
             const Text(
               'Alex Music',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 4),
             const Text(
               'Music lover and songwriter',
-              style: TextStyle(fontSize: 14, color: Colors.white),
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
@@ -41,24 +49,33 @@ class ProfileScreen extends StatelessWidget {
                 _StatItem(count: '32h', label: 'Listening'),
               ],
             ),
-            const SizedBox(height: 20),
-            OutlinedButton(
-              onPressed: () {
-                // Navigate to edit profile page
-              },
-              child: const Text('Edit Profile'),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  side: const BorderSide(color: Colors.white),
+                ),
+                onPressed: () {
+                  // Navigate to edit profile page
+                },
+                child: const Text('Edit Profile'),
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             const _SectionItem(
               icon: Icons.headphones,
               title: 'Favorite Genres',
               subtitle: 'Pop • Rock • Jazz',
             ),
+            const Divider(color: Colors.grey),
             const _SectionItem(
               icon: Icons.library_music,
               title: 'My Playlists',
               hasArrow: true,
             ),
+            const Divider(color: Colors.grey),
             const _SectionItem(
               icon: Icons.logout,
               title: 'Logout',
@@ -80,10 +97,22 @@ class _StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(count,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(
+          count,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         const SizedBox(height: 4),
-        Text(label, style: const TextStyle(color: Colors.white)),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 13,
+          ),
+        ),
       ],
     );
   }
@@ -107,12 +136,26 @@ class _SectionItem extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 4),
       leading: Icon(icon, color: Colors.white),
-      title: Text(title, style: const TextStyle(fontSize: 16)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          color: Colors.white,
+        ),
+      ),
       subtitle: subtitle != null
-          ? Text(subtitle!, style: const TextStyle(color: Colors.white))
+          ? Text(
+              subtitle!,
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 13,
+              ),
+            )
           : null,
-      trailing: hasArrow ? const Icon(Icons.chevron_right) : null,
-      onTap: () {},
+      trailing: hasArrow ? const Icon(Icons.chevron_right, color: Colors.white) : null,
+      onTap: () {
+        // Implement onTap action if needed
+      },
     );
   }
 }
